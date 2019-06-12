@@ -1,0 +1,201 @@
+html {
+	font: 18px "Times New Roman", Times, serif;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+    background-color: #444;
+	color: #ddd;
+	margin: 0;
+	padding: 25px 30px 15px;
+}
+
+footer {
+	text-align: center;
+	padding: 40px 15px 20px;
+	font-size: 0.8rem;
+}
+
+footer span {
+	font-size: 0.7rem;
+}
+
+/* Zawartość strony */
+.title {
+	text-align: center;
+	font-size: 2rem;
+	margin: 0;
+	padding-top: 15px;
+	color: #ddd;
+	font-weight: bolder;
+	border-radius: 8px 8px 0 0;
+	background-color: #111;
+	opacity: 0.7;
+}
+
+.todo-cnt {
+    max-width: 1020px;
+    margin: 0 auto;
+}
+
+
+
+/* Elementy formularza dodawania */
+.todo-form {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+	border-radius: 0 0 8px 8px;
+    padding: 10px 35px;
+    background-color: #111;
+	opacity: 0.7;
+	margin-top: 0;
+}
+
+.todo-form-row {
+    overflow: hidden;
+}
+.todo-form-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.todo-form-message {
+    display: block;
+    padding: 10px;
+    min-height: 250px;
+    min-width: 926px;
+    border: 1px solid #ddd;
+	border-radius: 5px;
+    margin: 5px auto;
+}
+.todo-form-message:focus
+{
+	box-shadow: inset 0 0 0 3px rgba(0,238,255,0.8);
+	outline: none;
+}
+
+/* Przycisk dodawania */
+.todo-form-button {
+    padding: 15px 25px;
+    background-color: #7a3;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+	transition: 0.4s all;
+}
+.todo-form-button:hover {
+    background-color: #5a0;
+}
+.todo-form-button:focus {
+    box-shadow: inset 0 0 0 1px #000;
+	outline: none;
+}
+
+
+
+/* Lista zadań */
+.todo-list-cnt {
+    margin: 10px 0;
+    border: 1px solid #000;
+    padding: 10px 35px;
+	border-radius: 5px;
+    background-color: #111;
+	opacity: 0.7;
+}
+.todo-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.todo-list-search-form {
+    width: 50%;
+}
+.todo-list-search {
+    border: 1px solid #000;
+    padding: 10px;
+    width: 100%;
+    border-radius: 25px;
+}
+.todo-list-search:focus {
+    box-shadow: 0 0 0 1px #0ef;
+    outline: none;
+}
+.todo-list-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+
+
+/* Pojedyncze zadanie */
+.todo-element {
+    border-top: 1px solid #000;
+    margin-top: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.todo-element-bar {
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.todo-element-date {
+    margin: 0;
+}
+.todo-element-date {
+    font-size: 0.9rem;
+    font-weight: normal;
+}
+.todo-element-text {
+    color: #777;
+    font-size: 0.8rem;
+}
+
+
+/* Przycisk usuwania */
+.element-delete {
+    display: inline-block;
+    background-color: #ff5C5C;
+    border-radius: 50%;
+    border: 0;
+    color: #222;
+    padding: 0;
+    margin: 2px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    line-height: 100%;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    transition: 0.4s all;
+}
+.element-delete:hover {
+    background-color: #ff1e1e;
+}
+.element-delete:focus {
+    outline: none;
+	box-shadow: outset 0 0 0 2px #000;
+	border-radius: 50%
+}
+
+
+
+/* info z błędem */
+.error-box
+{
+    background-color: #aa5C5C;
+    margin: 15px auto;
+    padding: 10px 20px;
+    color: #000;
+    border-radius: 25px;
+    text-align: center;
+    width: 70%;
+    border: 3px solid rgba(0,0,0,0.8);
+    font-weight: bolder;
+}
