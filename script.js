@@ -45,22 +45,29 @@ function addTask(text, date)
 
 
 // Box z errorem
-function error(content)
+function confirm(content, type)
 {
     //element error
-    const boxErr = document.createElement('div');
-    boxErr.classList.add('error-box');
+    const confirm = document.createElement('div');
+    confirm.classList.add('confirm-box');
+    confirm.classList.add(type);
 
     //element z tekstem
-    const errText = document.createElement('div');
-    errText.classList.add('error-box-text');
-    errText.innerText = content;
+    const infoText = document.createElement('p');
+    infoText.classList.add('confirm-content');
+    infoText.innerText = content;
+
+    // Element do zamykania
+    const button = document.createElement('div');
+    button.classList.add('confirm-button');
+    button.innerText = "OK";
 
     //laczymy calosc
-    boxErr.appendChild(errText);
+    confirm.appendChild(infoText);
+    confirm.appendChild(button);
 
     //i dodajemy do strony
-    todoForm.after(boxErr);
+    todoForm.after(confirm);
 };
 
 
@@ -91,7 +98,7 @@ function getData()
 	
 	$.when(getData).then( 
 		(result) => result.forEach(el => addTask(el["description"], el["date"]) ), 
-		() => error("Błąd wczytania pliku z danymi !")
+		() => confirm("Błąd wczytania pliku z danymi !","err")
 	);
 };
 
@@ -102,7 +109,7 @@ function addData(description)
 {
     const date = preparDate();
             
-    const addData = $.post('ajax.php',
+    const addData = $.post('ajaxs.php',
         {
             action: 'add',
             date: date,
@@ -112,9 +119,13 @@ function addData(description)
 
     $.when(addData).then(
         (data, status) => {
-            if(data != '') addTask(description, date);
-            else error("Błąd dodawania wpisu !")
-        }, () => error("Błąd wczytania pliku ajax !")
+            if(data != '') 
+                {
+                    addTask(description, date);
+                    confirm('Dodana zadanie do listy.','ok');
+                }
+            else confirm("Błąd dodawania wpisu !","err")
+        }, () => confirm("Błąd wczytania pliku ajax !","err")
     );
 };
 
@@ -140,8 +151,8 @@ function delData(date, description, el)
                 description = null;
                 el = null;
             } 
-            else  error("Błąd usuwania wpisu !");
-        }, () => error("Błąd wczytania pliku ajax !")
+            else  confirm("Błąd usuwania wpisu !","err");
+        }, () => confirm("Błąd wczytania pliku ajax !","err")
     );
 }
 
@@ -168,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function()
             addData(textarea.value);
             textarea.value = '';
         }
-        else alert('Wpisz coś w treści zadania.'); // TODO stylizacja alerta
+        else confirm('Wpisz coś w treści zadania.','info');
     });
 	
 
@@ -182,10 +193,16 @@ document.addEventListener('DOMContentLoaded', function()
             const element = e.target.closest('.todo-element')
             const date = e.target.previousElementSibling.innerText;
             const description = e.target.parentElement.nextElementSibling.innerText;
-            
-            console.log('hffui');
             delData(date, description, element);
         };
+    });
+
+
+    addEventListener('click', function(e)
+    {
+        const element = e.target.closest('.confirm-button');
+        element.parentElement.remove();
+        element = null;
     });
 	
 	
@@ -209,7 +226,4 @@ document.addEventListener('DOMContentLoaded', function()
         });
 	});
 
-
-	
-// TODO: Niszczenie komunikatów errorów
 });
