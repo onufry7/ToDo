@@ -16,7 +16,7 @@ function addTask(text, date)
 
     //data w belce
     const todoDate = document.createElement('div');
-    todoDate.classList.add('todo-element-bar');
+    todoDate.classList.add('todo-element-date');
     todoDate.innerText = date;
 
     //przycisk usuwania
@@ -120,9 +120,22 @@ function addData(description)
 
 
 // Usunięcie wpisu
-function delData()
+function delData(date, description, el)
 {
- // TODO: usuwanie wpisów
+    const deleteData = $.post('file.ajax.php',
+        {
+            action: 'delete',
+            date: date,
+            description: description
+        });
+
+    $.when(deleteData).then(
+        (data, status) => {
+            console.log(data);
+            if(data == 'true') el.remove();
+            else  error("Błąd usuwania wpisu !");
+        }, () => error("Błąd wczytania pliku ajax !")
+    );
 }
 
 
@@ -135,11 +148,8 @@ document.addEventListener('DOMContentLoaded', function()
     todoList = document.querySelector('#todoList');
     todoForm = document.querySelector('#todoForm');
     todoSearch = document.querySelector('#todoSearch');
-	
 
 	getData(); //Wczytanie danych z bazy
-
-
 
     // Event dodania wpisu
     todoForm.addEventListener('submit', function(e) 
@@ -156,12 +166,18 @@ document.addEventListener('DOMContentLoaded', function()
 	
 
 
-
 	// Event usunięcia wpisu
 	todoList.addEventListener('click', function(e) 
 	{
         if (e.target.closest('.element-delete') !== null)
-			e.target.closest('.todo-element').remove();	
+        {
+            //Pobieram wartości klikniętego zadania
+            const date = e.target.previousElementSibling.innerText;
+            const description = e.target.parentElement.nextElementSibling.innerText;
+            const element = e.target.closest('.todo-element')
+            
+            delData(date, description, element);
+        };
     });
 	
 	
@@ -187,5 +203,5 @@ document.addEventListener('DOMContentLoaded', function()
 
 
 	
-
+// TODO: Niszczenie komunikatów errorów
 });

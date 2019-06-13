@@ -58,7 +58,7 @@ footer span {
     display: block;
     margin-bottom: 5px;
 }
-
+/* TODO: Width dla textarea poprawić żeby się to nie rozjeżdżałao */
 .todo-form-message {
     display: block;
     padding: 10px;
@@ -67,6 +67,7 @@ footer span {
     border: 1px solid #ddd;
 	border-radius: 5px;
     margin: 5px auto;
+    z-index: -200;
 }
 .todo-form-message:focus
 {
