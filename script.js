@@ -122,7 +122,7 @@ function addData(description)
             if(data != '') 
                 {
                     addTask(description, date);
-                    confirm('Dodana zadanie do listy.','ok');
+                    confirm('Dodano zadanie do listy.','ok');
                 }
             else confirm("Błąd dodawania wpisu !","err")
         }, () => confirm("Błąd wczytania pliku ajax !","err")
