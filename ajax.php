@@ -39,7 +39,7 @@ if(isset($_POST['action']))
 				// Szukamy wpisu do usunięciaa
 				foreach ($tmpArray as $key => $value) 
 				{
-					if( in_array($date, $value) && in_array($description, $value) )
+					if( in_array($date, $value) )
 					{
 						unset($tmpArray[$key]);
 					}

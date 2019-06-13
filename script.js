@@ -75,7 +75,8 @@ function preparDate()
     const month = ((date.getMonth()+1) < 10) ? '0'+(date.getMonth()+1) : (date.getMonth()+1);
     const hours = (date.getHours() < 10) ? '0'+date.getHours() : date.getHours();
     const minutes = (date.getMinutes() < 10) ? '0'+date.getMinutes() : date.getMinutes();
-    const dateText = day + '-' + month + '-' + year + ' godz.: ' + hours + ':' + minutes;
+    const seconds = (date.getSeconds() < 10) ? '0'+date.getSeconds() : date.getSeconds();
+    const dateText = day + '-' + month + '-' + year + ' godz.: ' + hours + ':' + minutes + ':' + seconds;
     return dateText;
 };
 
@@ -101,7 +102,7 @@ function addData(description)
 {
     const date = preparDate();
             
-    const addData = $.post('file.ajax.php',
+    const addData = $.post('ajax.php',
         {
             action: 'add',
             date: date,
@@ -122,7 +123,7 @@ function addData(description)
 // Usunięcie wpisu
 function delData(date, description, el)
 {
-    const deleteData = $.post('file.ajax.php',
+    const deleteData = $.post('ajax.php',
         {
             action: 'delete',
             date: date,
@@ -132,7 +133,13 @@ function delData(date, description, el)
     $.when(deleteData).then(
         (data, status) => {
             console.log(data);
-            if(data == 'true') el.remove();
+            if(data == 'true')
+            {
+                el.remove();
+                date = null;
+                description = null;
+                el = null;
+            } 
             else  error("Błąd usuwania wpisu !");
         }, () => error("Błąd wczytania pliku ajax !")
     );
@@ -172,10 +179,11 @@ document.addEventListener('DOMContentLoaded', function()
         if (e.target.closest('.element-delete') !== null)
         {
             //Pobieram wartości klikniętego zadania
+            const element = e.target.closest('.todo-element')
             const date = e.target.previousElementSibling.innerText;
             const description = e.target.parentElement.nextElementSibling.innerText;
-            const element = e.target.closest('.todo-element')
             
+            console.log('hffui');
             delData(date, description, element);
         };
     });
