@@ -109,7 +109,7 @@ function addData(description)
 {
     const date = preparDate();
             
-    const addData = $.post('ajaxs.php',
+    const addData = $.post('ajax.php',
         {
             action: 'add',
             date: date,
@@ -119,11 +119,7 @@ function addData(description)
 
     $.when(addData).then(
         (data, status) => {
-            if(data != '') 
-                {
-                    addTask(description, date);
-                    confirm('Dodano zadanie do listy.','ok');
-                }
+            if(data != '') addTask(description, date);
             else confirm("Błąd dodawania wpisu !","err")
         }, () => confirm("Błąd wczytania pliku ajax !","err")
     );
@@ -147,9 +143,7 @@ function delData(date, description, el)
             if(data == 'true')
             {
                 el.remove();
-                date = null;
-                description = null;
-                el = null;
+                el = null; 
             } 
             else  confirm("Błąd usuwania wpisu !","err");
         }, () => confirm("Błąd wczytania pliku ajax !","err")
@@ -178,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function()
 		{
             addData(textarea.value);
             textarea.value = '';
+            confirm('Dodano zadanie do listy.','ok');
         }
         else confirm('Wpisz coś w treści zadania.','info');
     });
@@ -198,6 +193,7 @@ document.addEventListener('DOMContentLoaded', function()
     });
 
 
+    // Zamykanie confirma
     addEventListener('click', function(e)
     {
         const element = e.target.closest('.confirm-button');
