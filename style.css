@@ -1,3 +1,5 @@
+* {box-sizing: border-box;}
+
 html {
 	font: 18px "Times New Roman", Times, serif;
 	margin: 0;
@@ -63,7 +65,7 @@ footer span {
     display: block;
     padding: 10px;
     min-height: 250px;
-    min-width: 926px;
+    width: 100%;
     border: 1px solid #ddd;
 	border-radius: 5px;
     margin: 5px auto;
