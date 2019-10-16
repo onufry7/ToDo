@@ -1,1 +1,0 @@
-Aplikacja typu lista zadań. (HTML, CSS, JS, AJAX, JQUERY, PHP, JSON).
