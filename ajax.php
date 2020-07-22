@@ -1,5 +1,7 @@
 <?php
 
+$demo = true;
+
 // Sprawdzamy czy wykonano akcje
 if(isset($_POST['action']))
 {
@@ -19,7 +21,7 @@ if(isset($_POST['action']))
 				$tmpArray = json_decode($currentData, true);
 				array_push($tmpArray, $json);
 				$tmpArray = json_encode($tmpArray, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-				file_put_contents('db.json', $tmpArray);
+				if(!$demo) file_put_contents('db.json', $tmpArray);
 				print_r($json); // Zwrócenie danych
 			}
 			break;
@@ -47,7 +49,7 @@ if(isset($_POST['action']))
 
 				// Zapisujemy przetworzone dane
 				$tmpArray = json_encode(array_values($tmpArray), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-				file_put_contents('db.json', $tmpArray);
+				if(!$demo) file_put_contents('db.json', $tmpArray);
 				echo 'true';
 			}
 			break;

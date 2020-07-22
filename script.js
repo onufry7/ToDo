@@ -10,7 +10,7 @@ function addTask(text, date)
     const todo = document.createElement('div');
     todo.classList.add('todo-element');
 
-    //belka gorna
+    //belka górna
     const todoBar = document.createElement('div');
     todoBar.classList.add('todo-element-bar');
 
@@ -47,8 +47,12 @@ function addTask(text, date)
 // Box z errorem
 function confirm(content, type)
 {
+    // Usówamy confirma jeśli istnieje
+    if(document.querySelector('#confirm')) document.querySelector('#confirm').remove();
+    
     //element error
     const confirm = document.createElement('div');
+    confirm.id = "confirm";
     confirm.classList.add('confirm-box');
     confirm.classList.add(type);
 
@@ -143,13 +147,12 @@ function delData(date, description, el)
             if(data == 'true')
             {
                 el.remove();
-                el = null; 
+                el = null;
             } 
             else  confirm("Błąd usuwania wpisu !","err");
         }, () => confirm("Błąd wczytania pliku ajax !","err")
     );
 }
-
 
 
 
@@ -193,17 +196,15 @@ document.addEventListener('DOMContentLoaded', function()
     });
 
 
-    // Zamykanie confirma
-    addEventListener('click', function(e)
-    {
-        const element = e.target.closest('.confirm-button');
-        element.parentElement.remove();
+    //Zamykanie confirma
+    $(document).on('click','.confirm-button',function(e){
+        let element = e.target.closest('#confirm');
+        element.remove();
         element = null;
     });
+
 	
 	
-
-
     // Szukajka
 	todoSearch.addEventListener('input', function() 
 	{

@@ -1,18 +1,34 @@
 [
     {
-        "date": "16-10-2019 godz.: 20:35:52",
-        "description": "nowe"
-    },
-    {
         "date": "16-10-2019 godz.: 20:39:50",
-        "description": "555555555555555555555"
+        "description": "Testowy wpis numer 1."
     },
     {
-        "date": "16-10-2019 godz.: 20:39:59",
-        "description": "3333333333333333333333"
+        "date": "11-07-2020 godz.: 21:06:39",
+        "description": "Kolejny testowy wpis w aplikacji do zrobienia."
     },
     {
-        "date": "16-10-2019 godz.: 20:41:36",
-        "description": "66666666"
+        "date": "11-07-2020 godz.: 21:06:44",
+        "description": "I jeszcze jeden ciekawy wpis do listy."
+    },
+    {
+        "date": "17-10-2019 godz.: 20:39:50",
+        "description": "Testowy wpis numer 1."
+    },
+    {
+        "date": "22-07-2020 godz.: 21:06:39",
+        "description": "Kolejny testowy wpis w aplikacji do zrobienia."
+    },
+    {
+        "date": "21-07-2020 godz.: 21:06:44",
+        "description": "I jeszcze jeden ciekawy wpis do listy."
+    },
+    {
+        "date": "14-10-2019 godz.: 20:39:50",
+        "description": "Testowy wpis numer 1."
+    },
+    {
+        "date": "15-07-2020 godz.: 21:06:39",
+        "description": "Kolejny testowy wpis w aplikacji do zrobienia."
     }
 ]
